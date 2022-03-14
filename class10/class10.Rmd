@@ -1,0 +1,29 @@
+---
+title: "class10"
+author: "Chantal Rabay"
+date: "2/21/2022"
+output: pdf_document
+---
+```{r}
+knitr:: opts_chunk$set(echo = TRUE)
+```
+
+#Section 1. Proportion og G/G in a population
+
+Downloaded a CSV file from Ensemble
+
+Here we read this CSV file
+```{r}
+mxl <- read.csv("373531-SampleGenotypes-Homo_sapiens_Variation_Sample_rs8067378 (2).csv")
+
+View(mxl)
+head(mxl)
+```
+```{r}
+table(mxl$Genotype..forward.strand.)
+```
+
+```{r}
+table(mxl$Genotype..forward.strand.)/nrow(mxl)*100
+```
+

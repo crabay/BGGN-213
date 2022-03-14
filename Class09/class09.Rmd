@@ -1,0 +1,154 @@
+---
+title: "Class 09: Structural Bioinformatics Pt. 1"
+author: "Chantal Rabay"
+date: "2/25/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+r = getOption("repos")
+r["CRAN"] = "http://cran.us.r-project.org"
+options(repos = r)
+```
+
+# [Q1] What percentage of structures in the PDB are solved by X-Ray and Electron Microscopy.
+```{r}
+(163351+10139)/187423 * 100
+
+```
+92.57% are solved by X-Ray and Electron Microscopy 
+
+# [Q2] What proportion of structures in the PDB are protein?
+```{r}
+163543/187423 * 100
+```
+87.26% of the structures in the PDB are protein.
+
+# [Q3] Type HIV in the PDB website search box on the home page and determine how many HIV-1 protease structures are in the current PDB?
+There are 187423 HIV-1 protease structures in the current PDB.
+
+# [Q4] Water molecules normally have 3 atoms. Why do we see just one atom per water molecule in this structure?
+In the visual created by VMD we assigned spheres to the HOH residues. Therefore, while water does in fact have 3 atoms, the visual is marking every spot in which the HOH residue is present. So one atom being marked by the green sphere in VMD is three atoms making up the water molecule.
+
+# [Q5] There is a conserved water molecule in the binding site. Can you identify this water molecule? What residue number does this water molecule have (see note below)?
+
+OH308:0 around residue MK1
+
+# Reading PDB file data into R
+
+```{r}
+install.packages("bio3d", dependencies=TRUE)
+library(bio3d)
+pdb <- read.pdb("1hsg.pdb")
+```
+
+## Note:Accessing on-line PDB file
+
+```{r}
+pdb
+```
+
+# [Q7] How many amino acid residues are there in this pdb object?
+198 amino acid residues
+
+# [Q8] Name one of the two non-protein residues? 
+HOH and MK1
+
+# [Q9] How many proteins are in this structure?
+There are two proteins in this structure.
+
+> Comparative Structure Analysis of Adenylate Kinase
+
+```{r}
+# Install packages in the R console not your Rmd
+
+install.packages("bio3d")
+install.packages("ggplot2")
+install.packages("ggrepel")
+install.packages("devtools")
+install.packages("BiocManager")
+
+BiocManager::install("msa")
+devtools::install_bitbucket("Grantlab/bio3d-view")
+
+```
+
+# [Q10] Which of the packages above is found only on BioConductor and not CRAN?
+msa is only found on BioConductor 
+
+# [Q11] Which of the above packages is not found on BioConductor or CRAN?: 
+bio3d-view is not found on Bioconductor or CRAN
+
+# [Q12] True or False? Functions from the devtools package can be used to install packages from GitHub and BitBucket? 
+TRUE
+
+> Search and Retrieve ADK Structures
+
+```{r}
+library(bio3d)
+aa <- get.seq("1ake_A")
+
+```
+```{r}
+aa
+```
+
+#[Q13] How many amino acids are in this sequence, i.e. how long is this sequence?
+
+```{r}
+# Blast or hmmer search 
+b <- blast.pdb(aa)
+```
+```{r}
+# Plot a summary of search results
+hits <- plot(b)
+```
+
+
+```{r}
+# List out some 'top hits'
+head(hits$pdb.id)
+```
+
+```{r}
+# Download releated PDB files
+files <- get.pdb(hits$pdb.id, path="pdbs", split=TRUE, gzip=TRUE)
+```
+
+
+>Align and Superpose Structures 
+
+```{r}
+# Align releated PDBs
+pdbs <- pdbaln(files, fit = TRUE)#, exefile="msa")
+```
+```{r}
+# Vector containing PDB codes for figure axis
+ids <- basename.pdb(pdbs$id)
+
+# Draw schematic alignment
+plot(pdbs, labels=ids)
+```
+
+> Principal Component Analysis
+
+```{r}
+# Perform PCA
+pc.xray <- pca(pdbs)
+plot(pc.xray)
+```
+```{r}
+# Calculate RMSD
+rd <- rmsd(pdbs)
+
+# Structure-based clustering
+hc.rd <- hclust(dist(rd))
+grps.rd <- cutree(hc.rd, k=3)
+
+plot(pc.xray, 1:2, col="grey50", bg=grps.rd, pch=21, cex=1)
+```
+
