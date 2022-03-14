@@ -24,5 +24,5 @@ Class 12 - [RNA-Seq Analysis Mini-Project](https://github.com/crabay/BGGN-213/bl
   
 Class 14 - [Vaccination Rate Mini Project](https://github.com/crabay/BGGN-213/blob/9b7b407b3845bfe275af3a0ba214481ab5d204c0/Vaccination%20Mini%20Project/Vax%20mini%20project.Rmd)
   
-Class 15 -  Mini Project: Investigating Pertussis Resurgence
+Class 15 -  Mini Project: Investigating Pertussis Resurgence 
   
