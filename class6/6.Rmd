@@ -1,5 +1,5 @@
 ---
-title: 'Week 5: R Functions Lab'
+title: 'Class 6: R Functions Lab'
 author: "Chantal Rabay"
 date: "2/7/2022"
 output: pdf_document
