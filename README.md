@@ -5,6 +5,7 @@ This repository is for my UCSD bioinformatics class.
 
 ## Index of Materials
 *Introductory Material: Working with R*
+  
 Class 5 - [Data Visualization Lab](https://github.com/crabay/BGGN-213/blob/b8756542201ff5b39215622b362d736b02c93b05/class05/class05.R)
   
 Class 6 - [R Functions and R Packages Lab](https://github.com/crabay/BGGN-213/blob/9b7b407b3845bfe275af3a0ba214481ab5d204c0/class6/6.Rmd)  
@@ -19,7 +20,7 @@ Class 9 - [Structural Bioinformatics](https://github.com/crabay/BGGN-213/blob/ma
   
 Class 11 - [Transcriptomics and the Analysis of RNA-Seq Data](https://github.com/crabay/BGGN-213/blob/main/Class11/Class11lab.Rmd)
   
-Class 12 - [RNA-Seq Analysis Mini-Project](https://github.com/crabay/bggn213/blob/main/Class12/Class-12-Mini-Project-.pdf)
+Class 12 - [RNA-Seq Analysis Mini-Project](https://github.com/crabay/BGGN-213/blob/9b7b407b3845bfe275af3a0ba214481ab5d204c0/Class12/Class%2012%20Mini-Project%20.Rmd)
   
 Class 14 - [Vaccination Rate Mini Project](https://github.com/crabay/BGGN-213/blob/9b7b407b3845bfe275af3a0ba214481ab5d204c0/Vaccination%20Mini%20Project/Vax%20mini%20project.Rmd)
   
